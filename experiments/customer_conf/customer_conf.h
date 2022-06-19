@@ -40,7 +40,7 @@ class Address {
   }
   static bool ValidateDistrict(const Address &obj)
   {
-    return (obj.district_.length() <= 100);
+    return (obj.district_.length() <= 100U);
   }
 
   friend std::ostream &operator<<(std::ostream &os, const Address &obj)

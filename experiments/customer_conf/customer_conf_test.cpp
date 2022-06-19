@@ -15,11 +15,11 @@ using namespace jetconf::experiments;
  */
 class AddressTest: public ::testing::Test {
  public:
-  void SetUp()
+  void SetUp() override
   {
     std::cout << "AddressTest SetUp..." << std::endl;
   }
-  void TearDown()
+  void TearDown() override
   {
     std::cout << "AddressTest TearDown..." << std::endl;
   }
@@ -59,3 +59,20 @@ TEST_F(AddressTest, ValidateAddress)
   ASSERT_TRUE(Address::Validate(Address("深圳", "XYZ")));
 }
 
+std::string GenerateNLengthString(size_t n)
+{
+  std::string str(n, 'a');
+  return str;
+}
+
+TEST_F(AddressTest, ValidateDistrictLength)
+{
+  // 区名长度为0，预期结果：合法
+  ASSERT_TRUE(Address::Validate(Address("深圳", std::string(""))));
+
+  // 区名长度为100，预期结果：合法
+  ASSERT_TRUE(Address::Validate(Address("深圳", GenerateNLengthString(100U))));
+
+  // 区名长度为101，预期结果：不合法
+  ASSERT_FALSE(Address::Validate(Address("深圳", GenerateNLengthString(101U))));
+}
