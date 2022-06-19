@@ -1,0 +1,10 @@
+{
+  "id": 10001,
+  "type": 2,
+  "adress": {
+    "city": "深圳",
+    "district": "龙岗"
+  },
+  "phone": "+86-15812345678",
+  "email": "Joe@Fool.com"
+}
